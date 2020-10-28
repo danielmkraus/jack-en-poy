@@ -20,13 +20,13 @@ class ShapeTest {
             "SCISSOR,SCISSOR,DRAW",
             "SCISSOR,PAPER,WIN",
             "SCISSOR,ROCK,LOOSE"})
-    public void shapes_against(Shape shape, Shape against, MatchResult result){
+    public void shapes_against(Shape shape, Shape against, MatchResult result) {
         assertThat(shape.against(against)).isEqualTo(result);
     }
 
     @EnumSource(Shape.class)
     @ParameterizedTest(name = "{0} against null shape will throw NullPointerException")
-    public void against_null_shape(Shape shape){
-        assertThatNullPointerException().isThrownBy(()-> shape.against(null));
+    public void against_null_shape(Shape shape) {
+        assertThatNullPointerException().isThrownBy(() -> shape.against(null));
     }
 }

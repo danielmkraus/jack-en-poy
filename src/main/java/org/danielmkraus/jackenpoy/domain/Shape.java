@@ -1,34 +1,30 @@
 package org.danielmkraus.jackenpoy.domain;
 
+import java.util.Map;
 import java.util.Objects;
 
+import static java.util.Map.entry;
+import static org.danielmkraus.jackenpoy.domain.MatchResult.*;
+
 public enum Shape {
-    PAPER {
-        @Override
-        MatchResult againstOther(Shape other) {
-            return other == ROCK ? MatchResult.WIN : MatchResult.LOOSE ;
-        }
-    },
-    ROCK {
-        @Override
-        MatchResult againstOther(Shape other) {
-            return other == SCISSOR ? MatchResult.WIN : MatchResult.LOOSE ;
-        }
-    },
-    SCISSOR {
-        @Override
-        MatchResult againstOther(Shape other) {
-            return other == PAPER ? MatchResult.WIN : MatchResult.LOOSE ;
-        }
-    };
+    PAPER,
+    ROCK,
+    SCISSOR;
 
-    MatchResult against(Shape shape){
+    private static final Map<Map.Entry<Shape, Shape>, MatchResult> RESULTS =
+            Map.ofEntries(
+                    entry(entry(ROCK, ROCK), DRAW),
+                    entry(entry(ROCK, SCISSOR), WIN),
+                    entry(entry(ROCK, PAPER), LOOSE),
+                    entry(entry(PAPER, PAPER), DRAW),
+                    entry(entry(PAPER, ROCK), WIN),
+                    entry(entry(PAPER, SCISSOR), LOOSE),
+                    entry(entry(SCISSOR, SCISSOR), DRAW),
+                    entry(entry(SCISSOR, PAPER), WIN),
+                    entry(entry(SCISSOR, ROCK), LOOSE));
+
+    MatchResult against(Shape shape) {
         Objects.requireNonNull(shape);
-        if(shape == this){
-            return MatchResult.DRAW;
-        }
-        return againstOther(shape);
+        return RESULTS.get(entry(this, shape));
     }
-
-    abstract MatchResult againstOther(Shape other);
 }
