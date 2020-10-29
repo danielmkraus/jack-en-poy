@@ -1,5 +1,6 @@
-package org.danielmkraus.jackenpoy.domain;
+package org.danielmkraus.jackenpoy.domain.player;
 
+import org.danielmkraus.jackenpoy.domain.Shape;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
@@ -8,7 +9,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNullPointerException;
 
 class FixedShapePlayerTest {
-
     @ParameterizedTest
     @EnumSource(Shape.class)
     void fixed_shape_player_should_play_specified_shape(Shape shape){

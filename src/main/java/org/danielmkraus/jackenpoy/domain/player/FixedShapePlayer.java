@@ -1,4 +1,6 @@
-package org.danielmkraus.jackenpoy.domain;
+package org.danielmkraus.jackenpoy.domain.player;
+
+import org.danielmkraus.jackenpoy.domain.Shape;
 
 import java.util.Objects;
 

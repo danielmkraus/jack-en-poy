@@ -1,5 +1,6 @@
-package org.danielmkraus.jackenpoy.domain;
+package org.danielmkraus.jackenpoy.domain.player;
 
+import org.danielmkraus.jackenpoy.domain.Shape;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,7 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
-import java.util.Random;
+import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
@@ -22,14 +23,14 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class RandomShapePlayerTest {
     @Mock
-    Random random;
+    Supplier<Integer> random;
     @InjectMocks
     RandomShapePlayer player;
 
     @ParameterizedTest
     @MethodSource("randomPlayerCanGenerateAllValuesArguments")
     void random_player_can_generate_all_values(Integer index, Shape shape){
-        when(random.nextInt()).thenReturn(index);
+        when(random.get()).thenReturn(index);
         assertThat(player.play()).isEqualTo(shape);
     }
 
@@ -40,8 +41,8 @@ class RandomShapePlayerTest {
 
     private static List<Arguments> randomPlayerCanGenerateAllValuesArguments(){
         var shapes = Shape.values();
-        return IntStream.range(0, shapes.length*3)
-                .mapToObj(index-> arguments(index, shapes[index%shapes.length]))
+        return IntStream.range(shapes.length*-3, shapes.length*3)
+                .mapToObj(index-> arguments(index, shapes[Math.abs(index)%shapes.length]))
                 .collect(toList());
     }
 }
