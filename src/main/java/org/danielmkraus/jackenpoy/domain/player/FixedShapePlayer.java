@@ -1,16 +1,13 @@
 package org.danielmkraus.jackenpoy.domain.player;
 
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
 import org.danielmkraus.jackenpoy.domain.Shape;
 
-import java.util.Objects;
-
+@AllArgsConstructor
 public class FixedShapePlayer implements Player {
+    @NonNull
     private final Shape shape;
-
-    public FixedShapePlayer(Shape shape) {
-        Objects.requireNonNull(shape);
-        this.shape = shape;
-    }
 
     @Override
     public Shape play() {
