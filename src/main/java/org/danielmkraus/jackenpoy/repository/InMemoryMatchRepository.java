@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import static java.util.stream.Collectors.toList;
 
 public class InMemoryMatchRepository implements MatchRepository {
-    private Map<String, Match> matches = new ConcurrentHashMap<>();
+    private final Map<String, Match> matches = new ConcurrentHashMap<>();
 
     @Override
     public void save(Match match){

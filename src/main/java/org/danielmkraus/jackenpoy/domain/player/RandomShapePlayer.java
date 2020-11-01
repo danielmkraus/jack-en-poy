@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import org.danielmkraus.jackenpoy.domain.Shape;
 
-import java.util.Objects;
 import java.util.function.Supplier;
 
 @AllArgsConstructor

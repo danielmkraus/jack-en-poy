@@ -25,6 +25,16 @@ class InMemoryMatchRepositoryTest {
     }
 
     @Test
+    void should_save_without_id(){
+        Match match = Match.builder().build();
+
+        repository.save(match);
+
+        assertThat(match.getId()).isNotNull().isNotEmpty();
+        assertThat(repository.findById(match.getId())).isEqualTo(match);
+    }
+
+    @Test
     void should_not_find_match_without_save_it(){
         assertThat(repository.findById("1")).isNull();
     }
