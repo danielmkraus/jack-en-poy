@@ -1,6 +1,8 @@
 package org.danielmkraus.jackenpoy;
 
+import com.fatboyindustrial.gsonjavatime.Converters;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.apache.commons.cli.ParseException;
 import org.danielmkraus.jackenpoy.domain.Match;
 import org.danielmkraus.jackenpoy.domain.User;
@@ -22,7 +24,7 @@ class JackEnPoyIntegrationTest {
     public static final String FIRST_PLAYER_USER_ID = "first";
     public static final String SECOND_PLAYER_USER_ID = "second";
     public static final String THIRD_PLAYER_USER_ID = "third";
-    private final Gson gson = new Gson();
+    private final Gson gson = Converters.registerAll(new GsonBuilder()).create();
     private Server server;
     private JackEnPoyClient client;
 
