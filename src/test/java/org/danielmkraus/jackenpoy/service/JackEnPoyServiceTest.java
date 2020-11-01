@@ -60,6 +60,7 @@ class JackEnPoyServiceTest {
             assertThat(match.getShape()).isEqualTo(ROCK);
             assertThat(match.getAgainst()).isEqualTo(PAPER);
             assertThat(match.getResult()).isEqualTo(LOOSE);
+            assertThat(match.getTimestamp()).isNotNull();
             return true;
         }));
         verify(repository).findByUser(sampleUser);

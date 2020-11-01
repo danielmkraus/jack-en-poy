@@ -2,12 +2,15 @@ package org.danielmkraus.jackenpoy;
 
 
 import io.undertow.Undertow;
+import io.undertow.server.handlers.resource.ClassPathResourceManager;
 import io.undertow.servlet.api.DeploymentInfo;
 import lombok.AllArgsConstructor;
 import org.apache.commons.cli.*;
 import org.jboss.resteasy.core.ResteasyDeploymentImpl;
 import org.jboss.resteasy.plugins.server.undertow.UndertowJaxrsServer;
 import org.jboss.resteasy.spi.ResteasyDeployment;
+
+import static io.undertow.Handlers.resource;
 
 @AllArgsConstructor
 public class Server {
@@ -68,8 +71,15 @@ public class Server {
 
 
     public void start() {
-        Undertow.Builder serverBuilder = Undertow.builder().addHttpListener(port, bindAddress);
+        Undertow.Builder serverBuilder = Undertow.builder()
+                .addHttpListener(port, bindAddress);
         undertowServer.start(serverBuilder);
+
+        undertowServer.addResourcePrefixPath("/webapp/", resource(new ClassPathResourceManager(
+                Server.class.getClassLoader(),
+                "webapp/"
+        )).addWelcomeFiles("index.html"));
+
         ResteasyDeployment deployment = new ResteasyDeploymentImpl();
         deployment.setApplicationClass(JackEnPoyApplication.class.getName());
 
