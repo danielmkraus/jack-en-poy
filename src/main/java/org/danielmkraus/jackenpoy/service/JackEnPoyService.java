@@ -31,7 +31,10 @@ public class JackEnPoyService {
 
         matchRepository.save(match);
         log.debug("Match played: {}", match);
+        return getMatches(user);
+    }
 
+    public List<Match> getMatches(User user) {
         return matchRepository.findByUser(user);
     }
 }
