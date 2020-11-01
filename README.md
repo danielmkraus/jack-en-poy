@@ -1,2 +1,23 @@
 # Jack en poy
 
+[![Build Status](https://travis-ci.com/danielmkraus/jack-en-poy.svg?branch=master)](https://travis-ci.com/danielmkraus/jack-en-poy)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=org.danielmkraus%3Ajack-en-poy&metric=alert_status)](https://sonarcloud.io/dashboard?id=org.danielmkraus%3Ajack-en-poy)
+
+## Description
+Jack en poy or rock paper scissors (also known by other orderings of the three items, with "rock" sometimes being called "stone", roshambo or ro-sham-bo) is a hand game usually played between two people, in which each player simultaneously forms one of three shapes with an outstretched hand. These shapes are "rock" (a closed fist), "paper" (a flat hand), and "scissors" (a fist with the index finger and middle finger extended, forming a V). "Scissors" is identical to the two-fingered V sign (also indicating "victory" or "peace") except that it is pointed horizontally instead of being held upright in the air.               
+A simultaneous, zero-sum game, it has only two possible outcomes: a draw, or a win for one player and a loss for the other. A player who decides to play rock will beat another player who has chosen scissors ("rock crushes scissors" or sometimes "blunts scissors"), but will lose to one who has played paper ("paper covers rock"); a play of paper will lose to a play of scissors ("scissors cuts paper"). If both players choose the same shape, the game is tied and is usually immediately replayed to break the tie. The type of game originated in China and spread with increased contact with East Asia, while developing different variants in signs over time.
+- source [Wikipedia](https://en.wikipedia.org/wiki/Rock_paper_scissors)
+    
+### Project requirements
+
+- Users can trigger matches played by two automated agents, first will always play rock, and the second will play randomly
+- Users can see the matches played by him/her
+- Users can reset matches played by him/her 
+
+## Technical requirements
+
+- Java 11 + 
+
+## Endpoints
+
+### 
