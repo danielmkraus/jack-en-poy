@@ -2,6 +2,7 @@ package org.danielmkraus.jackenpoy.controller;
 
 import lombok.AllArgsConstructor;
 import org.danielmkraus.jackenpoy.domain.Match;
+import org.danielmkraus.jackenpoy.domain.MatchScore;
 import org.danielmkraus.jackenpoy.domain.User;
 import org.danielmkraus.jackenpoy.service.JackEnPoyService;
 
@@ -27,6 +28,12 @@ public class JackEnPoyController {
     @Produces(APPLICATION_JSON)
     public List<Match> getMatches(@PathParam("userId") String userId) {
         return service.getMatches(user(userId));
+    }
+
+    @GET
+    @Produces(APPLICATION_JSON)
+    public MatchScore getScore() {
+        return service.getScore();
     }
 
     private User user(String userId) {

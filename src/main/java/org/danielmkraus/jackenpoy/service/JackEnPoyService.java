@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.danielmkraus.jackenpoy.domain.Match;
+import org.danielmkraus.jackenpoy.domain.MatchScore;
 import org.danielmkraus.jackenpoy.domain.User;
 import org.danielmkraus.jackenpoy.domain.player.Player;
 import org.danielmkraus.jackenpoy.repository.MatchRepository;
@@ -36,5 +37,9 @@ public class JackEnPoyService {
 
     public List<Match> getMatches(User user) {
         return matchRepository.findByUser(user);
+    }
+
+    public MatchScore getScore() {
+        return matchRepository.getScore();
     }
 }

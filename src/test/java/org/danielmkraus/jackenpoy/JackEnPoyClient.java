@@ -1,7 +1,6 @@
 package org.danielmkraus.jackenpoy;
 
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -18,7 +17,6 @@ public class JackEnPoyClient {
             .version(HttpClient.Version.HTTP_2)
             .build();
 
-    @SneakyThrows
     public CompletableFuture<HttpResponse<String>> play(String userId) {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(serverUrl + JACK_EN_POY_ENDPOINT + "/" + userId))
@@ -26,10 +24,16 @@ public class JackEnPoyClient {
         return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString());
     }
 
-    @SneakyThrows
     public CompletableFuture<HttpResponse<String>> getMatches(String userId) {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(serverUrl + JACK_EN_POY_ENDPOINT + "/" + userId))
+                .GET().build();
+        return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+    }
+
+    public CompletableFuture<HttpResponse<String>> score() {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + JACK_EN_POY_ENDPOINT))
                 .GET().build();
         return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString());
     }
