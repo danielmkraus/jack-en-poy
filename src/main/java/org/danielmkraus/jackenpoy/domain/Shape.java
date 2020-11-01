@@ -15,13 +15,13 @@ public enum Shape {
             Map.ofEntries(
                     entry(entry(ROCK, ROCK), DRAW),
                     entry(entry(ROCK, SCISSOR), WIN),
-                    entry(entry(ROCK, PAPER), LOOSE),
+                    entry(entry(ROCK, PAPER), LOSE),
                     entry(entry(PAPER, PAPER), DRAW),
                     entry(entry(PAPER, ROCK), WIN),
-                    entry(entry(PAPER, SCISSOR), LOOSE),
+                    entry(entry(PAPER, SCISSOR), LOSE),
                     entry(entry(SCISSOR, SCISSOR), DRAW),
                     entry(entry(SCISSOR, PAPER), WIN),
-                    entry(entry(SCISSOR, ROCK), LOOSE));
+                    entry(entry(SCISSOR, ROCK), LOSE));
 
     MatchResult against(Shape shape) {
         Objects.requireNonNull(shape);

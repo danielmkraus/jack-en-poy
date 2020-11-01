@@ -15,6 +15,9 @@ public class Match {
     private final LocalDateTime timestamp;
 
     public MatchResult getResult(){
-        return shape.against(against);
+        if (shape != null && against != null) {
+            return shape.against(against);
+        }
+        return null;
     }
 }

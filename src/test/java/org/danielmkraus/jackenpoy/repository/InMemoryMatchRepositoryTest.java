@@ -1,6 +1,7 @@
 package org.danielmkraus.jackenpoy.repository;
 
 import org.danielmkraus.jackenpoy.domain.Match;
+import org.danielmkraus.jackenpoy.domain.Shape;
 import org.danielmkraus.jackenpoy.domain.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,16 +19,30 @@ class InMemoryMatchRepositoryTest {
     }
 
     @Test
-    void should_save(){
+    void save() {
         Match match = Match.builder().id("1").build();
 
         repository.save(match);
 
+        assertThat(repository.getScore().getTotal()).isEqualTo(0L);
         assertThat(repository.findById("1")).isEqualTo(match);
     }
 
     @Test
-    void should_save_without_id(){
+    void save_and_count_score() {
+        Match match = Match.builder().id("1")
+                .shape(Shape.ROCK)
+                .against(Shape.ROCK)
+                .build();
+
+        repository.save(match);
+
+        assertThat(repository.getScore().getTotal()).isEqualTo(1L);
+        assertThat(repository.findById("1")).isEqualTo(match);
+    }
+
+    @Test
+    void save_without_id() {
         Match match = Match.builder().build();
 
         repository.save(match);
@@ -37,12 +52,12 @@ class InMemoryMatchRepositoryTest {
     }
 
     @Test
-    void should_not_find_match_without_save_it(){
+    void not_find_match_without_save_it() {
         assertThat(repository.findById("1")).isNull();
     }
 
     @Test
-    void should_find_by_user() {
+    void find_by_user() {
         Match firstMatch = Match.builder().user(User.builder().id("1").build()).build();
         Match secondMatch = Match.builder().user(User.builder().id("2").build()).build();
         repository.save(firstMatch);
@@ -54,7 +69,7 @@ class InMemoryMatchRepositoryTest {
     }
 
     @Test
-    void should_find_by_user_ordered_by_timestamp_descending() {
+    void find_by_user_ordered_by_timestamp_descending() {
         LocalDateTime now = LocalDateTime.now();
         Match firstMatch = Match.builder().user(User.builder().id("1").build()).timestamp(now.minusHours(2)).build();
         Match secondMatch = Match.builder().user(User.builder().id("1").build()).timestamp(now.minusHours(1)).build();

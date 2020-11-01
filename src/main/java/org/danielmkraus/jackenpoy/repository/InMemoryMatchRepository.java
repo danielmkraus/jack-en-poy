@@ -1,6 +1,7 @@
 package org.danielmkraus.jackenpoy.repository;
 
 import org.danielmkraus.jackenpoy.domain.Match;
+import org.danielmkraus.jackenpoy.domain.MatchScore;
 import org.danielmkraus.jackenpoy.domain.User;
 
 import java.util.Comparator;
@@ -13,13 +14,17 @@ import static java.util.stream.Collectors.toList;
 
 public class InMemoryMatchRepository implements MatchRepository {
     private final Map<String, Match> matches = new ConcurrentHashMap<>();
+    private final MatchScore score = new MatchScore();
 
     @Override
-    public void save(Match match){
-        if(match.getId() == null){
+    public void save(Match match) {
+        if (match.getId() == null) {
             match.setId(UUID.randomUUID().toString());
         }
         matches.put(match.getId(), match);
+        if (match.getResult() != null) {
+            score.process(match.getResult());
+        }
     }
 
     @Override
@@ -34,5 +39,10 @@ public class InMemoryMatchRepository implements MatchRepository {
                 .filter(match -> user.equals(match.getUser()))
                 .sorted(Comparator.comparing(Match::getTimestamp).reversed())
                 .collect(toList());
+    }
+
+    @Override
+    public MatchScore getScore() {
+        return score.clone();
     }
 }
