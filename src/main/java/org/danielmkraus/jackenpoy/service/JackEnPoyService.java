@@ -8,6 +8,7 @@ import org.danielmkraus.jackenpoy.domain.User;
 import org.danielmkraus.jackenpoy.domain.player.Player;
 import org.danielmkraus.jackenpoy.repository.MatchRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -25,6 +26,7 @@ public class JackEnPoyService {
                 .user(user)
                 .shape(player.play())
                 .against(opponent.play())
+                .timestamp(LocalDateTime.now())
                 .build();
 
         matchRepository.save(match);

@@ -5,6 +5,8 @@ import org.danielmkraus.jackenpoy.domain.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class InMemoryMatchRepositoryTest {
@@ -40,7 +42,7 @@ class InMemoryMatchRepositoryTest {
     }
 
     @Test
-    void should_find_by_user(){
+    void should_find_by_user() {
         Match firstMatch = Match.builder().user(User.builder().id("1").build()).build();
         Match secondMatch = Match.builder().user(User.builder().id("2").build()).build();
         repository.save(firstMatch);
@@ -49,5 +51,18 @@ class InMemoryMatchRepositoryTest {
                 .containsExactly(firstMatch);
         assertThat(repository.findByUser(User.builder().id("2").build()))
                 .containsExactly(secondMatch);
+    }
+
+    @Test
+    void should_find_by_user_ordered_by_timestamp_descending() {
+        LocalDateTime now = LocalDateTime.now();
+        Match firstMatch = Match.builder().user(User.builder().id("1").build()).timestamp(now.minusHours(2)).build();
+        Match secondMatch = Match.builder().user(User.builder().id("1").build()).timestamp(now.minusHours(1)).build();
+        Match thirdMatch = Match.builder().user(User.builder().id("1").build()).timestamp(now).build();
+        repository.save(firstMatch);
+        repository.save(thirdMatch);
+        repository.save(secondMatch);
+        assertThat(repository.findByUser(User.builder().id("1").build()))
+                .containsExactly(thirdMatch, secondMatch, firstMatch);
     }
 }

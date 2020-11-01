@@ -3,6 +3,7 @@ package org.danielmkraus.jackenpoy.repository;
 import org.danielmkraus.jackenpoy.domain.Match;
 import org.danielmkraus.jackenpoy.domain.User;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -31,6 +32,7 @@ public class InMemoryMatchRepository implements MatchRepository {
         return matches.values()
                 .stream()
                 .filter(match -> user.equals(match.getUser()))
+                .sorted(Comparator.comparing(Match::getTimestamp).reversed())
                 .collect(toList());
     }
 }
