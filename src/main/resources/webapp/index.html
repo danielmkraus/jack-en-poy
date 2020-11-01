@@ -6,15 +6,21 @@
 </head>
 <body>
 <div align="center" id="app">
-    <a href="score.html">Score</a>
-    <h1>Jack en poy!
-        <img src="./images/rock.png" width="24px"/>
-        <img src="./images/paper.png" width="24px"/>
-        <img src="./images/scissor.png" width="24px"/>
-    </h1>
-    <h2>Played {{info.data.length}} matches</h2>
-    <button v-on:click="play">Play Round</button>
-    <button v-on:click="reset">Restart game</button>
+    <div class="nav-bar">
+        <a href="score.html">Score</a>
+    </div>
+    <div class="title">
+        <h1>Jack en poy!
+            <img src="./images/rock.png" width="24px"/>
+            <img src="./images/paper.png" width="24px"/>
+            <img src="./images/scissor.png" width="24px"/>
+        </h1>
+    </div>
+    <h2>You played {{info.data.length}} matches</h2>
+    <div class="button-bar">
+        <button v-on:click="play">Play Round</button>
+        <button v-on:click="reset">Restart game</button>
+    </div>
     <table v-if="info.data.length > 0">
         <thead>
         <td>Player 1</td>
