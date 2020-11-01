@@ -18,7 +18,7 @@ import java.util.stream.IntStream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
 
-public class JackEnPoyIntegrationTest {
+class JackEnPoyIntegrationTest {
     public static final String FIRST_PLAYER_USER_ID = "first";
     public static final String SECOND_PLAYER_USER_ID = "second";
     public static final String THIRD_PLAYER_USER_ID = "third";
@@ -27,7 +27,7 @@ public class JackEnPoyIntegrationTest {
     private JackEnPoyClient client;
 
     @BeforeEach
-    public void setup() throws ParseException, IOException {
+    void setup() throws ParseException, IOException {
         ServerSocket socket = new ServerSocket(0);
         String port = Integer.toString(socket.getLocalPort());
         socket.close();
@@ -36,7 +36,7 @@ public class JackEnPoyIntegrationTest {
     }
 
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
         server.stop();
     }
 

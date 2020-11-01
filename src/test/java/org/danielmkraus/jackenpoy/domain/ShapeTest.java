@@ -11,7 +11,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatNullPointerException;
 import static org.danielmkraus.jackenpoy.domain.MatchResult.*;
 import static org.danielmkraus.jackenpoy.domain.Shape.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
@@ -20,26 +21,26 @@ class ShapeTest {
 
     @ParameterizedTest(name = "{0} against {1} should {2}")
     @MethodSource("shapesAgainstArguments")
-    public void shapes_against(Shape shape, Shape against, MatchResult result) {
+    void shapes_against(Shape shape, Shape against, MatchResult result) {
         assertThat(shape.against(against)).isEqualTo(result);
     }
 
     @EnumSource(Shape.class)
     @ParameterizedTest(name = "{0} against null shape will throw NullPointerException")
-    public void against_null_shape(Shape shape) {
+    void against_null_shape(Shape shape) {
         assertThatNullPointerException().isThrownBy(() -> shape.against(null));
     }
 
     @Test
-    public void ensure_that_all_possibilities_are_covered(){
+    void ensure_that_all_possibilities_are_covered() {
         var allPossibilities = Stream.of(Shape.values()).flatMap(shape -> Stream.of(Shape.values())
                 .map(against -> Map.entry(shape, against)))
                 .collect(Collectors.toSet());
 
         var mappedPossibilities = shapesAgainstArguments().stream()
-                .map(arguments->
-                        Map.entry((Shape)arguments.get()[0],
-                                (Shape)arguments.get()[1]))
+                .map(arguments ->
+                        Map.entry((Shape) arguments.get()[0],
+                                (Shape) arguments.get()[1]))
                 .collect(Collectors.toSet());
 
         assertThat(mappedPossibilities).containsAll(allPossibilities);

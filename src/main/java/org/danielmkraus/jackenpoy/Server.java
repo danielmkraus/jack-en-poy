@@ -18,7 +18,7 @@ public class Server {
     private static final String DEFAULT_CONTEXT_PATH = "/";
     private static final String DEFAULT_SERVER_PORT = "8080";
 
-    private final UndertowJaxrsServer server = new UndertowJaxrsServer();
+    private final UndertowJaxrsServer undertowServer = new UndertowJaxrsServer();
     private final Integer port;
     private final String bindAddress;
     private final String contextPath;
@@ -69,18 +69,18 @@ public class Server {
 
     public void start() {
         Undertow.Builder serverBuilder = Undertow.builder().addHttpListener(port, bindAddress);
-        server.start(serverBuilder);
+        undertowServer.start(serverBuilder);
         ResteasyDeployment deployment = new ResteasyDeploymentImpl();
         deployment.setApplicationClass(JackEnPoyApplication.class.getName());
 
-        DeploymentInfo di = server.undertowDeployment(deployment, "/api")
+        DeploymentInfo di = undertowServer.undertowDeployment(deployment, "/api")
                 .setClassLoader(Server.class.getClassLoader())
                 .setContextPath(contextPath)
                 .setDeploymentName("Jack en poy Application");
-        server.deploy(di);
+        undertowServer.deploy(di);
     }
 
     public void stop() {
-        server.stop();
+        undertowServer.stop();
     }
 }
