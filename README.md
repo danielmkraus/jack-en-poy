@@ -18,6 +18,11 @@ A simultaneous, zero-sum game, it has only two possible outcomes: a draw, or a w
 
 - Java 11 + 
 
-## Endpoints
+## Running the application
 
-### 
+enter inside the project folder with a shell and execute the following command
+```
+./mvnw clean -U compile exec:java -Dexec.mainClass="org.danielmkraus.jackenpoy.Server"
+```
+
+ 
