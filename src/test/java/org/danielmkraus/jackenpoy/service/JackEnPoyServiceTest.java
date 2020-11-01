@@ -57,7 +57,6 @@ class JackEnPoyServiceTest {
 
         verify(repository).save(argThat(match -> {
             assertThat(match.getUser()).isEqualTo(sampleUser);
-            assertThat(match.getTime()).isNotNull();
             assertThat(match.getShape()).isEqualTo(ROCK);
             assertThat(match.getAgainst()).isEqualTo(PAPER);
             assertThat(match.getResult()).isEqualTo(LOOSE);

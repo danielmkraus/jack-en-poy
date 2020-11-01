@@ -3,8 +3,6 @@ package org.danielmkraus.jackenpoy.domain;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 @Data
 @Builder
 public class Match {
@@ -12,7 +10,6 @@ public class Match {
     private final User user;
     private final Shape shape;
     private final Shape against;
-    private final LocalDateTime time;
 
     public MatchResult getResult(){
         return shape.against(against);
