@@ -8,11 +8,12 @@ Jack en poy or rock paper scissors (also known by other orderings of the three i
 A simultaneous, zero-sum game, it has only two possible outcomes: a draw, or a win for one player and a loss for the other. A player who decides to play rock will beat another player who has chosen scissors ("rock crushes scissors" or sometimes "blunts scissors"), but will lose to one who has played paper ("paper covers rock"); a play of paper will lose to a play of scissors ("scissors cuts paper"). If both players choose the same shape, the game is tied and is usually immediately replayed to break the tie. The type of game originated in China and spread with increased contact with East Asia, while developing different variants in signs over time.
 - source [Wikipedia](https://en.wikipedia.org/wiki/Rock_paper_scissors)
     
-### Project requirements
+### Project business requirements
 
 - Users can trigger matches played by two automated agents, first will always play rock, and the second will play randomly
-- Users can see the matches played by him/her
+- Users can see matches played by him/her
 - Users can reset matches played by him/her 
+- Users can check the total score of matches played by all users in score view
 
 ## Technical requirements
 
@@ -25,4 +26,11 @@ enter inside the project folder with a shell and execute the following command
 ./mvnw clean -U compile exec:java -Dexec.mainClass="org.danielmkraus.jackenpoy.Server"
 ```
 
- 
+After run this command, you should be able to open the [main page](http://127.0.0.1:8080/webapp)
+
+## TO-DO
+
+- Change the CDN strategy to packaging for the web interface
+- Apply some style lib like material design or bootstrap
+- Apply a automatic release pipeline on travis ci
+- Implement swagger / openapi documentation for the Rest endpoints
