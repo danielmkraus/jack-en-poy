@@ -1,3 +1,5 @@
+Vue.use(VueLocalStorage)
+
 const RESULT_LABELS = {
     WIN: 'Player 1 wins',
     LOSE: 'Player 2 wins',
@@ -15,13 +17,26 @@ const app = new Vue({
                 .post('/api/v1/jack-en-poy/' + this.id)
                 .then(response => (this.info = response))
         },
+        fetch: function () {
+            axios
+                .get('/api/v1/jack-en-poy/' + this.id)
+                .then(response => (this.info = response))
+        },
         reset: function () {
-            const {info, id} = getInitialState();
+            const {info} = getInitialState();
             this.info = info;
-            this.id = id;
+            this.id = generateId();
+            this.$localStorage.set('userId', this.id);
         }
     },
-    mounted() {
+    created() {
+        this.id = this.$localStorage.get('userId')
+        if (this.id) {
+            this.fetch();
+        } else {
+            this.reset();
+        }
+
     }
 });
 
@@ -36,7 +51,7 @@ function getInitialState() {
         info: {
             data: []
         },
-        id: generateId(),
+        id: null,
         labels: {
             results: RESULT_LABELS
         }
