@@ -60,10 +60,10 @@ class MatchScoreTest {
     @Test
     void clone_keeps_old_score_when_cloned_changes() {
         assertScore(0L, 0L, 0L);
-        var cloned = score.clone();
+        var copied = score.copy();
         score.process(LOSE);
 
-        assertScore(cloned, 0L, 0L, 0L);
+        assertScore(copied, 0L, 0L, 0L);
         assertScore(0L, 0L, 1L);
     }
 

@@ -43,6 +43,6 @@ public class InMemoryMatchRepository implements MatchRepository {
 
     @Override
     public MatchScore getScore() {
-        return score.clone();
+        return score.copy();
     }
 }

@@ -1,14 +1,14 @@
 package org.danielmkraus.jackenpoy.domain;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.SneakyThrows;
-import lombok.ToString;
+import lombok.*;
 
 @ToString
 @EqualsAndHashCode
 @Getter
-public class MatchScore implements Cloneable {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class MatchScore {
     private Long draw = 0L;
     private Long firstPlayerWin = 0L;
     private Long secondPlayerWin = 0L;
@@ -37,8 +37,13 @@ public class MatchScore implements Cloneable {
         }
     }
 
-    @SneakyThrows
-    public MatchScore clone() {
-        return (MatchScore) super.clone();
+    public MatchScore copy() {
+        synchronized (this) {
+            return MatchScore.builder()
+                    .draw(draw)
+                    .firstPlayerWin(firstPlayerWin)
+                    .secondPlayerWin(secondPlayerWin)
+                    .build();
+        }
     }
 }
