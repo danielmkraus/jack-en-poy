@@ -14,7 +14,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNullPointerException;
-import static org.danielmkraus.jackenpoy.domain.MatchResult.LOOSE;
+import static org.danielmkraus.jackenpoy.domain.MatchResult.LOSE;
 import static org.danielmkraus.jackenpoy.domain.Shape.PAPER;
 import static org.danielmkraus.jackenpoy.domain.Shape.ROCK;
 import static org.mockito.ArgumentMatchers.argThat;
@@ -59,7 +59,7 @@ class JackEnPoyServiceTest {
             assertThat(match.getUser()).isEqualTo(sampleUser);
             assertThat(match.getShape()).isEqualTo(ROCK);
             assertThat(match.getAgainst()).isEqualTo(PAPER);
-            assertThat(match.getResult()).isEqualTo(LOOSE);
+            assertThat(match.getResult()).isEqualTo(LOSE);
             assertThat(match.getTimestamp()).isNotNull();
             return true;
         }));

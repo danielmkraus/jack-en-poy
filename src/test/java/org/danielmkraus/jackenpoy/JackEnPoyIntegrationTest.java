@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.commons.cli.ParseException;
 import org.danielmkraus.jackenpoy.domain.Match;
+import org.danielmkraus.jackenpoy.domain.MatchScore;
 import org.danielmkraus.jackenpoy.domain.User;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -53,6 +54,14 @@ class JackEnPoyIntegrationTest {
     }
 
     @Test
+    void score() throws ExecutionException, InterruptedException {
+        HttpResponse<String> response = client.score().get();
+
+        assertThat(response.statusCode()).isEqualTo(200);
+        assertThat(gson.fromJson(response.body(), MatchScore.class).getTotal()).isEqualTo(0L);
+    }
+
+    @Test
     void play_concurrently() {
         IntStream.range(0, 100).parallel().forEach(i -> {
             client.play(FIRST_PLAYER_USER_ID);
@@ -64,6 +73,10 @@ class JackEnPoyIntegrationTest {
             HttpResponse<String> firstUserMatchesResponse = client.getMatches(FIRST_PLAYER_USER_ID).get();
             HttpResponse<String> secondUserMatchesResponse = client.getMatches(SECOND_PLAYER_USER_ID).get();
             HttpResponse<String> thirdUserMatchesResponse = client.getMatches(THIRD_PLAYER_USER_ID).get();
+
+            HttpResponse<String> response = client.score().get();
+            assertThat(response.statusCode()).isEqualTo(200);
+            assertThat(gson.fromJson(response.body(), MatchScore.class).getTotal()).isEqualTo(300L);
             assertThat(firstUserMatchesResponse.statusCode()).isEqualTo(200);
             assertThat(secondUserMatchesResponse.statusCode()).isEqualTo(200);
             assertThat(thirdUserMatchesResponse.statusCode()).isEqualTo(200);

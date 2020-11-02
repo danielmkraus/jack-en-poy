@@ -1,6 +1,6 @@
 const RESULT_LABELS = {
     WIN: 'Player 1 wins',
-    LOOSE: 'Player 2 wins',
+    LOSE: 'Player 2 wins',
     DRAW: 'Draw'
 };
 

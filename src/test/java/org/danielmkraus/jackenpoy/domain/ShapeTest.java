@@ -48,15 +48,15 @@ class ShapeTest {
 
     private static List<Arguments> shapesAgainstArguments(){
         return List.of(
-                arguments(ROCK,ROCK,DRAW),
-                arguments(ROCK,SCISSOR,WIN),
-                arguments(ROCK,PAPER,LOOSE),
-                arguments(PAPER,PAPER,DRAW),
-                arguments(PAPER,ROCK,WIN),
-                arguments(PAPER,SCISSOR,LOOSE),
-                arguments(SCISSOR,SCISSOR,DRAW),
-                arguments(SCISSOR,PAPER,WIN),
-                arguments(SCISSOR,ROCK,LOOSE)
+                arguments(ROCK, ROCK, DRAW),
+                arguments(ROCK, SCISSOR, WIN),
+                arguments(ROCK, PAPER, LOSE),
+                arguments(PAPER, PAPER, DRAW),
+                arguments(PAPER, ROCK, WIN),
+                arguments(PAPER, SCISSOR, LOSE),
+                arguments(SCISSOR, SCISSOR, DRAW),
+                arguments(SCISSOR, PAPER, WIN),
+                arguments(SCISSOR, ROCK, LOSE)
         );
     }
 }

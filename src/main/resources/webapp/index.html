@@ -2,18 +2,30 @@
 <head>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="webapp.css" rel="stylesheet">
 </head>
 <body>
-<div id="app">
-    <h1>Jack en poy!</h1>
-    <h2>Played {{info.data.length}} matches</h2>
-    <button v-on:click="play">Play Round</button>
-    <button v-on:click="reset">Restart game</button>
+<div align="center" id="app">
+    <div class="nav-bar">
+        <a href="score.html">Score</a>
+    </div>
+    <div class="title">
+        <h1>Jack en poy!
+            <img src="./images/rock.png" width="24px"/>
+            <img src="./images/paper.png" width="24px"/>
+            <img src="./images/scissor.png" width="24px"/>
+        </h1>
+    </div>
+    <h2>You have played {{info.data.length}} matches</h2>
+    <div class="button-bar">
+        <button v-on:click="play">Play Round</button>
+        <button v-on:click="reset">Restart game</button>
+    </div>
     <table v-if="info.data.length > 0">
         <thead>
         <td>Player 1</td>
         <td>Player 2</td>
-        <td>Result</td>
+        <td align="center">Result</td>
         </thead>
         <tr :key="item.id" v-for="item of info.data">
             <td align="center"><img src="./images/rock.png" v-if="item.shape === 'ROCK'" width="24px"/>
