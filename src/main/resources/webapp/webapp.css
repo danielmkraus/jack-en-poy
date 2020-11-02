@@ -28,12 +28,30 @@ div.nav-bar {
     width: 100%;
     margin: 0px;
     padding: 16px;
-    background-color: #69809b;
+    background-color: #448aff;
+}
+
+div.nav-bar a {
+    font-size: 22px;
+    color: white;
+    font-weight: bolder;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button {
+    border: none;
+    color: white;
+    font-weight: bolder;
+    font-size: 16px;
+    background-color: #448aff;
+    padding: 16px;
 }
 
 div.title {
+    color: white;
     width: 100%;
     margin: 0px;
     padding: 32px;
-    background-color: #929ccd;
+    background-color: #5a8ee5;
 }
