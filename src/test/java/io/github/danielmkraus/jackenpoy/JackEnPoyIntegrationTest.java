@@ -58,7 +58,7 @@ class JackEnPoyIntegrationTest {
         HttpResponse<String> response = client.score().get();
 
         assertThat(response.statusCode()).isEqualTo(200);
-        assertThat(gson.fromJson(response.body(), MatchScore.class).getTotal()).isEqualTo(0L);
+        assertThat(gson.fromJson(response.body(), MatchScore.class).getTotal()).isZero();
     }
 
     @Test

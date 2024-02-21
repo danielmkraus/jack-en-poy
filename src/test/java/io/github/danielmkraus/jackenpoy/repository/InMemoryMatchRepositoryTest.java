@@ -24,7 +24,7 @@ class InMemoryMatchRepositoryTest {
 
         repository.save(match);
 
-        assertThat(repository.getScore().getTotal()).isEqualTo(0L);
+        assertThat(repository.getScore().getTotal()).isZero();
         assertThat(repository.findById("1")).isEqualTo(match);
     }
 

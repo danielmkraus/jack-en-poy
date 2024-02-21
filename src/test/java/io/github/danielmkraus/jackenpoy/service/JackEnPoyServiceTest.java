@@ -51,7 +51,7 @@ class JackEnPoyServiceTest {
         var sampleUser = getSampleUser();
         var matchList = List.of(Match.builder().build());
         when(player.play()).thenReturn(ROCK,PAPER);
-        when(repository.findByUser(eq(sampleUser))).thenReturn(matchList);
+        when(repository.findByUser(sampleUser)).thenReturn(matchList);
 
         var results = service.play(sampleUser);
 
