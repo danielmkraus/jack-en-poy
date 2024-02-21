@@ -23,7 +23,7 @@ A simultaneous, zero-sum game, it has only two possible outcomes: a draw, or a w
 
 enter inside the project folder with a shell and execute the following command
 ```
-./mvnw clean -U compile exec:java -Dexec.mainClass="org.danielmkraus.jackenpoy.Server"
+./mvnw clean -U compile exec:java -Dexec.mainClass="io.github.danielmkraus.jackenpoy.Server"
 ```
 
 After run this command, you should be able to open the [main page](http://127.0.0.1:8080/webapp)
