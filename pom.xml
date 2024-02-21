@@ -17,7 +17,7 @@
         <version.lombok>1.18.30</version.lombok>
         <version.resteasy>6.2.4.Final</version.resteasy>
 
-        <sonar.projectKey>jack-en-poy</sonar.projectKey>
+        <sonar.projectKey>danielmkraus_jack-en-poy</sonar.projectKey>
         <sonar.projectName>Jack en poy</sonar.projectName>
         <sonar.links.homepage>https://github.com/danielmkraus/jack-en-poy
         </sonar.links.homepage>
