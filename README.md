@@ -30,7 +30,7 @@ Asia, while developing different variants in signs over time.
 
 ## Technical requirements
 
-- Java 11 +
+- Java 17 +
 
 ## Running the application
 

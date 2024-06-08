@@ -1,57 +1,57 @@
 body {
-    margin: 0px;
+  margin: 0px;
 }
 
 button {
-    margin-bottom: 16px;
+  margin-bottom: 16px;
 }
 
 table {
-    border-collapse: collapse;
+  border-collapse: collapse;
 }
 
 th, td {
-    text-align: center;
-    padding: 8px;
+  text-align: center;
+  padding: 8px;
 }
 
 thead {
-    background-color: #f2f2f2;
-    text-align: center
+  background-color: #f2f2f2;
+  text-align: center
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }
 
 div.nav-bar {
-    width: 100%;
-    margin: 0px;
-    padding: 16px;
-    background-color: #448aff;
+  width: 100%;
+  margin: 0px;
+  padding: 16px;
+  background-color: #448aff;
 }
 
 div.nav-bar a {
-    font-size: 22px;
-    color: white;
-    font-weight: bolder;
-    text-decoration: none;
-    cursor: pointer;
+  font-size: 22px;
+  color: white;
+  font-weight: bolder;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 button {
-    border: none;
-    color: white;
-    font-weight: bolder;
-    font-size: 16px;
-    background-color: #448aff;
-    padding: 16px;
+  border: none;
+  color: white;
+  font-weight: bolder;
+  font-size: 16px;
+  background-color: #448aff;
+  padding: 16px;
 }
 
 div.title {
-    color: white;
-    width: 100%;
-    margin: 0px;
-    padding: 32px;
-    background-color: #5a8ee5;
+  color: white;
+  width: 100%;
+  margin: 0px;
+  padding: 32px;
+  background-color: #5a8ee5;
 }

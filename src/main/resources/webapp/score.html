@@ -1,25 +1,25 @@
 <html>
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <link href="webapp.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link href="webapp.css" rel="stylesheet">
 </head>
 <body>
 <div align="center" id="score">
-    <div class="nav-bar">
-        <a href="index.html">Play</a>
-    </div>
-    <div class="title">
-        <h1>Jack en poy!
-            <img src="./images/rock.png" width="24px"/>
-            <img src="./images/paper.png" width="24px"/>
-            <img src="./images/scissor.png" width="24px"/>
-        </h1>
-    </div>
-    <h3>{{score.total}} rounds were played in total.</h3>
-    <h3>First player won {{score.firstPlayerWin}} times.</h3>
-    <h3>Second player won {{score.secondPlayerWin}} times.</h3>
-    <h3>Draw {{score.draw}} times.</h3>
+  <div class="nav-bar">
+    <a href="index.html">Play</a>
+  </div>
+  <div class="title">
+    <h1>Jack en poy!
+      <img src="./images/rock.png" width="24px"/>
+      <img src="./images/paper.png" width="24px"/>
+      <img src="./images/scissor.png" width="24px"/>
+    </h1>
+  </div>
+  <h3>{{score.total}} rounds were played in total.</h3>
+  <h3>First player won {{score.firstPlayerWin}} times.</h3>
+  <h3>Second player won {{score.secondPlayerWin}} times.</h3>
+  <h3>Draw {{score.draw}} times.</h3>
 </div>
 <script src="score.js"></script>
 </body>
