@@ -34,7 +34,7 @@ jobs:
         run: chmod +x ./mvnw && ./mvnw versions:set -DnewVersion=$(echo $GITHUB_REF_NAME | sed 's/refs\/.*\///g')
 
       - name: Publish to GitHub Packages Apache Maven
-        run: chmod +x ./mvnw && ./mvnw -s $GITHUB_WORKSPACE/settings.xml clean javadoc:jar source:jar package -P release deploy -Dgpg.keyname=${MAVEN_GPG_KEYNAME} -Dgpg.passphrase=${MAVEN_GPG_PASSPHRASE} -DskipTests -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/danielmkraus/jack-en-poy
+        run: chmod +x ./mvnw && ./mvnw -s $GITHUB_WORKSPACE/settings.xml clean javadoc:jar source:jar package deploy -Dgpg.keyname=${MAVEN_GPG_KEYNAME} -Dgpg.passphrase=${MAVEN_GPG_PASSPHRASE} -DskipTests -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/danielmkraus/jack-en-poy
         env:
           GITHUB_TOKEN: ${{ github.token }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
