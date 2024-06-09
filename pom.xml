@@ -222,7 +222,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.5</version>
+                <version>3.0.1</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -233,6 +233,11 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <!-- Prevent gpg from using pinentry programs -->
+                    <gpgArguments>
+                        <argument>--pinentry-mode</argument>
+                        <argument>loopback</argument>
+                    </gpgArguments>
                 </configuration>
             </plugin>
         </plugins>
