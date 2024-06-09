@@ -1,3 +1,5 @@
 /jack-en-poy.iml
 /target/
 /.idea/
+/e2e-tests/.idea/
+/e2e-tests/target/
