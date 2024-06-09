@@ -2,7 +2,7 @@ name: Java CD to AWS
 
 on:
   release:
-    types: [created]
+    types: [published]
 
 jobs:
   build:
@@ -63,7 +63,7 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: boring-jack-en-poy
           environment_name: production
-          version_label: ${{ GITHUB_REF }}
+          version_label: ${{ github.event.release.tag_name }}
           region: eu-north-1
           deployment_package: jack-en-poy-release-jar-with-dependencies.jar
           existing_bucket_name: elasticbeanstalk-eu-north-1-851725374612
