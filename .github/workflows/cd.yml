@@ -33,8 +33,8 @@ jobs:
           GITHUB_REF: ${{ vars.GITHUB_REF }}
         run: chmod +x ./mvnw && ./mvnw versions:set -DnewVersion=1.0.0-SNAPSHOT
 
-      - name: Publish to GitHub Packages Apache Maven
-        run: chmod +x ./mvnw && ./mvnw -s $GITHUB_WORKSPACE/settings.xml clean javadoc:jar source:jar package deploy -Dgpg.keyname=${MAVEN_GPG_KEYNAME} -Dgpg.passphrase=${MAVEN_GPG_PASSPHRASE} -DskipTests -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/danielmkraus/jack-en-poy
+      - name: Build with Apache Maven
+        run: chmod +x ./mvnw && ./mvnw -s $GITHUB_WORKSPACE/settings.xml clean javadoc:jar source:jar package
         env:
           GITHUB_TOKEN: ${{ github.token }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
@@ -44,7 +44,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: jar-with-dependencies
-          path: target/jack-en-poy-1.0.0-SNAPSHOT-jar-with-dependencies.jar
+          path: target/jack-en-poy-GITHUB_REF-jar-with-dependencies.jar
 
   deploy:
     needs: build
@@ -64,7 +64,8 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: boring-jack-en-poy
-          environment_name: Springcicd-env
+          environment_name: production
           version_label: ${{ github.SHA }}
           region: eu-north-1
-          deployment_package: spring-test-server-0.0.1-SNAPSHOT.jar
+          deployment_package: jack-en-poy-GITHUB_REF-jar-with-dependencies.jar
+          existing_bucket_name: elasticbeanstalk-eu-north-1-851725374612
