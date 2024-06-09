@@ -51,7 +51,7 @@ jobs:
       - name: Run acceptance tests
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -f e2e-tests/pom.xml verify -DJACK_EN_POY_URL=http://jack-en-poy.eu-north-1.elasticbeanstalk.com
+        run: chmod +x ./mvnw && ./mvnw clean -f e2e-tests/pom.xml verify -DJACK_EN_POY_URL=http://jack-en-poy.eu-north-1.elasticbeanstalk.com
 
   smoke-test:
     needs: build
@@ -64,4 +64,4 @@ jobs:
       - name: Run acceptance tests
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: curl -X GET http://jack-en-poy.eu-north-1.elasticbeanstalk.com/webapp/ -f
+        run: curl -X GET http://jack-en-poy.eu-north-1.elasticbeanstalk.com/webaps/ -f
