@@ -41,8 +41,6 @@ jobs:
 
   deploy-to-stage:
     needs: build
-    environment:
-      name: production
     name: deploy
     runs-on: self-hosted
     steps:
