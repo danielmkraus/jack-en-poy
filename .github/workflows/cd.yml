@@ -3,10 +3,6 @@ name: Java CD to AWS
 on:
   release:
     types: [created]
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
 
 jobs:
   build:
@@ -31,7 +27,7 @@ jobs:
       - name: Set project version
         env:
           GITHUB_REF: ${{ vars.GITHUB_REF }}
-        run: chmod +x ./mvnw && ./mvnw versions:set -DnewVersion=$(echo $GITHUB_REF_NAME | sed 's/refs\/.*\///g')
+        run: chmod +x ./mvnw && ./mvnw versions:set -DnewVersion=1.0.0-SNAPSHOT
 
       - name: Publish to GitHub Packages Apache Maven
         run: chmod +x ./mvnw && ./mvnw -s $GITHUB_WORKSPACE/settings.xml clean javadoc:jar source:jar package deploy -Dgpg.keyname=${MAVEN_GPG_KEYNAME} -Dgpg.passphrase=${MAVEN_GPG_PASSPHRASE} -DskipTests -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/danielmkraus/jack-en-poy
@@ -44,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: jar-with-dependencies
-          path: target/jack-en-poy-${{ vars.GITHUB_REF }}-jar-with-dependencies.jar
+          path: target/jack-en-poy-1.0.0-SNAPSHOT-jar-with-dependencies.jar
 
   deploy:
     needs: build
