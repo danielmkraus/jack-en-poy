@@ -64,7 +64,7 @@ jobs:
           existing_bucket_name: elasticbeanstalk-eu-north-1-851725374612
 
   acceptance-test:
-    needs: build
+    needs: deploy-to-stage
     runs-on: self-hosted
     permissions:
       contents: read
@@ -88,7 +88,7 @@ jobs:
         run: chmod +x ./mvnw && ./mvnw clean -f e2e-tests/pom.xml verify -DJACK_EN_POY_URL=http://jackenpoy.eu-north-1.elasticbeanstalk.com
 
   smoke-test:
-    needs: build
+    needs: deploy-to-stage
     runs-on: self-hosted
     permissions:
       contents: read
