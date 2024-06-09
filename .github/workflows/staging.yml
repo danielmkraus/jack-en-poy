@@ -56,7 +56,7 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: boring-jack-en-poy
           environment_name: jackenpoy-1
-          version_label: ${{ vars.GITHUB_REF }}
+          version_label: ${{ github.SHA }}
           region: eu-north-1
           deployment_package: jack-en-poy-stage-jar-with-dependencies.jar
           existing_bucket_name: elasticbeanstalk-eu-north-1-851725374612
