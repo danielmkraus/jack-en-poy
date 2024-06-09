@@ -237,6 +237,8 @@
                     <gpgArguments>
                         <argument>--pinentry-mode</argument>
                         <argument>loopback</argument>
+                        <arg>--pinentry-mode</arg>
+                        <arg>loopback</arg>
                     </gpgArguments>
                 </configuration>
             </plugin>
