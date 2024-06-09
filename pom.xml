@@ -237,6 +237,8 @@
                     <gpgArguments>
                         <arg>--pinentry-mode</arg>
                         <arg>loopback</arg>
+                        <arg>--no-tty</arg>
+                        <gpgArgument>--no-tty</gpgArgument>
                     </gpgArguments>
                 </configuration>
             </plugin>
