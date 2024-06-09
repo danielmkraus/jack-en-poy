@@ -31,7 +31,7 @@ jobs:
       - name: Set project version
         env:
           GITHUB_REF: ${{ vars.GITHUB_REF }}
-        run: chmod +x ./mvnw && ./mvnw versions:set -DnewVersion=1.0.0-SNAPSHOT
+        run: chmod +x ./mvnw && ./mvnw versions:set -DnewVersion=GITHUB_REF
 
       - name: Build with Apache Maven
         run: chmod +x ./mvnw && ./mvnw -s $GITHUB_WORKSPACE/settings.xml clean javadoc:jar source:jar package
