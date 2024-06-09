@@ -3,10 +3,6 @@ name: Java CD to AWS
 on:
   release:
     types: [created]
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
 
 jobs:
   build:
@@ -31,7 +27,7 @@ jobs:
       - name: Set project version
         env:
           GITHUB_REF: ${{ vars.GITHUB_REF }}
-        run: chmod +x ./mvnw && ./mvnw versions:set -DnewVersion=GITHUB_REF
+        run: chmod +x ./mvnw && ./mvnw versions:set -DnewVersion=release
 
       - name: Build with Apache Maven
         run: chmod +x ./mvnw && ./mvnw -s $GITHUB_WORKSPACE/settings.xml clean javadoc:jar source:jar package
@@ -44,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: jar-with-dependencies
-          path: target/jack-en-poy-GITHUB_REF-jar-with-dependencies.jar
+          path: target/jack-en-poy-release-jar-with-dependencies.jar
 
   deploy:
     needs: build
@@ -67,5 +63,5 @@ jobs:
           environment_name: production
           version_label: ${{ github.SHA }}
           region: eu-north-1
-          deployment_package: jack-en-poy-GITHUB_REF-jar-with-dependencies.jar
+          deployment_package: jack-en-poy-release-jar-with-dependencies.jar
           existing_bucket_name: elasticbeanstalk-eu-north-1-851725374612
