@@ -1,0 +1,70 @@
+name: Java CD to AWS
+
+on:
+  release:
+    types: [created]
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17 with gitlab settings
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          server-id: github
+          settings-path: ${{ github.workspace }}
+          gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }} # Value of the GPG private key to import
+          gpg-passphrase: GPG_PASSPHRASE # env variable for GPG private key passphrase
+
+      - name: Set project version
+        env:
+          GITHUB_REF: ${{ vars.GITHUB_REF }}
+        run: chmod +x ./mvnw && ./mvnw versions:set -DnewVersion=$(echo $GITHUB_REF_NAME | sed 's/refs\/.*\///g')
+
+      - name: Publish to GitHub Packages Apache Maven
+        run: chmod +x ./mvnw && ./mvnw -s $GITHUB_WORKSPACE/settings.xml clean javadoc:jar source:jar package checksum:artifacts deploy  -Dgpg.keyname=${MAVEN_GPG_KEYNAME} -Dgpg.passphrase=${MAVEN_GPG_PASSPHRASE} -DskipTests -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/danielmkraus/jack-en-poy
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+          MAVEN_GPG_KEYNAME: ${{ secrets.MAVEN_GPG_KEYNAME }}
+
+      - name: Upload JAR
+        uses: actions/upload-artifact@v2
+        with:
+          name: jar-with-dependencies
+          path: target/jack-en-poy-${{ vars.GITHUB_REF }}-jar-with-dependencies.jar
+
+  deploy:
+    needs: build
+    environment:
+      name: production
+    name: deploy
+    runs-on: self-hosted
+    steps:
+      - name: Download JAR
+        uses: actions/download-artifact@v2
+        with:
+          name: jar-with-dependencies
+      # deploy the artifact (JAR) into AWS Beanstalk
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v20
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: boring-jack-en-poy
+          environment_name: Springcicd-env
+          version_label: ${{ github.SHA }}
+          region: eu-north-1
+          deployment_package: spring-test-server-0.0.1-SNAPSHOT.jar

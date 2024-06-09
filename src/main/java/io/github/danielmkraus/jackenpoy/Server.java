@@ -7,6 +7,8 @@ import io.undertow.Undertow;
 import io.undertow.server.handlers.resource.ClassPathResourceManager;
 import io.undertow.servlet.api.DeploymentInfo;
 import lombok.AllArgsConstructor;
+import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -17,7 +19,9 @@ import org.jboss.resteasy.core.ResteasyDeploymentImpl;
 import org.jboss.resteasy.plugins.server.undertow.UndertowJaxrsServer;
 import org.jboss.resteasy.spi.ResteasyDeployment;
 
+@Slf4j
 @AllArgsConstructor
+@ToString
 public class Server {
 
   public static final String SERVER_PORT_ARGUMENT = "p";
@@ -25,7 +29,7 @@ public class Server {
   public static final String SERVER_CONTEXT_PATH_ARGUMENT = "c";
   private static final String DEFAULT_BIND_ADDRESS = "0.0.0.0";
   private static final String DEFAULT_CONTEXT_PATH = "/";
-  private static final String DEFAULT_SERVER_PORT = "8080";
+  private static final String DEFAULT_SERVER_PORT = "5000";
 
   private final UndertowJaxrsServer undertowServer = new UndertowJaxrsServer();
   private final Integer port;
@@ -48,6 +52,7 @@ public class Server {
   }
 
   public void start() {
+    log.info("Starting: {}", this);
     Undertow.Builder serverBuilder = Undertow.builder()
         .addHttpListener(port, bindAddress);
     undertowServer.start(serverBuilder);
