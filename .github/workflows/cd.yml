@@ -55,13 +55,15 @@ jobs:
           name: jar-with-dependencies
       # deploy the artifact (JAR) into AWS Beanstalk
       - name: Deploy to EB
+        env:
+          GITHUB_REF: ${{ vars.GITHUB_REF }}
         uses: einaregilsson/beanstalk-deploy@v20
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: boring-jack-en-poy
           environment_name: production
-          version_label: ${{ vars.GITHUB_REF }}
+          version_label: ${{ GITHUB_REF }}
           region: eu-north-1
           deployment_package: jack-en-poy-release-jar-with-dependencies.jar
           existing_bucket_name: elasticbeanstalk-eu-north-1-851725374612
