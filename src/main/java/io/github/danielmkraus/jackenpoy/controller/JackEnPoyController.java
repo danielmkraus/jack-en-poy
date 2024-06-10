@@ -24,6 +24,7 @@ public class JackEnPoyController {
   @Path("/{userId}")
   @Produces(APPLICATION_JSON)
   public List<Match> play(@PathParam("userId") String userId) {
+
     return service.play(user(userId));
   }
 
@@ -31,6 +32,7 @@ public class JackEnPoyController {
   @Path("/{userId}")
   @Produces(APPLICATION_JSON)
   public List<Match> getMatches(@PathParam("userId") String userId) {
+
     return service.getMatches(user(userId));
   }
 
