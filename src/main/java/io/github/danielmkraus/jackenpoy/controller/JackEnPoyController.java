@@ -24,7 +24,7 @@ public class JackEnPoyController {
   @Path("/{userId}")
   @Produces(APPLICATION_JSON)
   public List<Match> play(@PathParam("userId") String userId) {
-return service.play(user(userId));
+    return service.play(user(userId));
   }
 
   @GET
