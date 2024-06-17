@@ -28,7 +28,7 @@ div.nav-bar {
   width: 100%;
   margin: 0px;
   padding: 16px;
-  background-color: #448aff;
+  background-color: #050000;
 }
 
 div.nav-bar a {
@@ -44,7 +44,7 @@ button {
   color: white;
   font-weight: bolder;
   font-size: 16px;
-  background-color: #448aff;
+  background-color: #050000;
   padding: 16px;
 }
 
@@ -53,5 +53,5 @@ div.title {
   width: 100%;
   margin: 0px;
   padding: 32px;
-  background-color: #5a8ee5;
+  background-color: #050000;
 }
