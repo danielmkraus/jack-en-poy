@@ -62,6 +62,7 @@ jobs:
           region: eu-north-1
           deployment_package: jack-en-poy-stage-jar-with-dependencies.jar
           existing_bucket_name: elasticbeanstalk-eu-north-1-851725374612
+          use_existing_version_if_available: true
 
   acceptance-test:
     needs: deploy-to-stage
