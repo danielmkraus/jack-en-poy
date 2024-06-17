@@ -45,7 +45,4 @@ After run this command, you should be able to open the [main page](http://127.0.
 ## TO-DO
 
 - Change the CDN strategy to packaging for the web interface part (add package.json and manage dependencies there).
-- Apply some style lib like material design or bootstrap
-- Apply a automatic release pipeline on travis ci
 - Implement swagger / openapi documentation for the Rest endpoints
-- Implement frontend tests
