@@ -33,6 +33,8 @@ public class JackEnPoyApplication extends Application {
   }
 
   private JackEnPoyService createJackEnPoyService() {
+    String a = "a";
+    //String b = "b";
     return new JackEnPoyService(
         new FixedShapePlayer(Shape.ROCK),
         new RandomShapePlayer(new SecureRandom()::nextInt),
